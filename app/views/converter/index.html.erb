@@ -1,0 +1,10 @@
+<% if @error %>
+    <h1>Woah! Something went wrong..</h1>
+    <p>Here's the full error: <%= @error %> </p>
+<% else %>
+    <ul>
+        <% @currencies.each do |currency_code, currency_name| %>
+            <li> <%= currency_name %> (<%= currency_code %>) </li>
+        <% end %>
+    </ul>
+<% end %>
