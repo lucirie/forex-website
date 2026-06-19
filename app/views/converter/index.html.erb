@@ -1,10 +1,21 @@
-<% if @error %>
-    <h1>Woah! Something went wrong..</h1>
-    <p>Here's the full error: <%= @error %> </p>
-<% else %>
-    <ul>
-        <% @currencies.each do |currency_code, currency_name| %>
-            <li> <%= currency_name %> (<%= currency_code %>) </li>
-        <% end %>
-    </ul>
-<% end %>
+<div data-controller="converter">
+    <form data-action="submit->converter#convert">
+        <input data-converter-target="amount" type="number" value="1">
+        <select data-converter-target="from">
+            <% @currencies.each do |currency| %>
+                <option value="<%= currency['iso_code'] %>">
+                     <%= currency['name'] %> (<%= currency['iso_code'] %>) 
+                </option>
+            <% end %>
+        </select>
+        <select data-converter-target="to">
+            <% @currencies.each do |currency| %>
+                <option value="<%= currency['iso_code'] %>">
+                    <%= currency['name'] %> (<%= currency['iso_code'] %>)  
+                </option>
+            <% end %>
+        </select>
+        <button type="submit">Convert</button>
+    </form>
+    <p data-converter-target="result"></p>
+</div>
